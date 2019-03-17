@@ -1,40 +1,53 @@
 import * as React from "react"
 import { Route } from "react-router"
-import { BrowserRouter, Link } from "react-router-dom"
+import { BrowserRouter } from "react-router-dom"
 
+import {
+  AppBar,
+  createStyles,
+  CssBaseline,
+  IconButton,
+  Toolbar,
+  Typography,
+  WithStyles,
+  withStyles,
+} from "@material-ui/core"
+
+import { Header } from "./components/common"
 import { Routes } from "./routers"
 
-interface Props extends React.Props<{}> {
+interface MainProps extends React.Props<{}> {
   title: string
 }
 
-const FComponent: React.FC<Props> = (props: Props) => {
-  const { title } = props
+const muiStyles = createStyles({
+  grow: {
+    flexGrow: 1,
+  },
+  menuButton: {
+    marginLeft: -12,
+    marginRight: 20,
+  },
+})
 
-  const LinkList: React.FC = () => (
-    <ul>
-      <li>
-        <Link to="/">Home</Link>
-      </li>
-      <li>
-        <Link to="/todo">Todo App</Link>
-      </li>
-    </ul>
-  )
+type Props = MainProps & WithStyles<typeof muiStyles>
+
+const FComponent: React.FC<Props> = (props: Props) => {
+  const { title, classes } = props
 
   return (
     <BrowserRouter>
-      <div>
-        <header>{title}</header>
-        <LinkList />
+      <React.Fragment>
+        <CssBaseline />
+        <Header {...props} />
         <main>
           <Route path="/" component={Routes} />
 
           {/* <Route component={NoMatch}/> */}
         </main>
-      </div>
+      </React.Fragment>
     </BrowserRouter>
   )
 }
 
-export default FComponent
+export default withStyles(muiStyles)(FComponent)
