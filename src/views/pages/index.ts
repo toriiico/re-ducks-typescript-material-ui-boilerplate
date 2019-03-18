@@ -5,10 +5,7 @@ import { StateAll } from "../../states/ducks/types"
 import component from "./component"
 
 const mapStateToProps = (state: StateAll, ownProps: any) => {
-  return {
-    // TODO: add 'app' ducks state and get title
-    title: "Header Title",
-  }
+  return {}
 }
 
 const mapDispatchToProps = (dispatch: Dispatch<any>, ownProps: any) => {

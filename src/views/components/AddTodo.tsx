@@ -1,36 +1,87 @@
-import React from "react"
+import * as React from "react"
 
-interface Props extends React.Props<{}> {
-  addTodo: (value: any) => void
+import {
+  Button,
+  createStyles,
+  FormControl,
+  LinearProgress,
+  TextField as MuiTextField,
+  Theme,
+  WithStyles,
+  withStyles,
+} from "@material-ui/core"
+
+import { Field, Form, Formik, FormikActions, FormikProps } from "formik"
+import { fieldToTextField, TextFieldProps } from "formik-material-ui"
+import * as Yup from "yup"
+
+interface MainProps extends React.Props<{}> {
+  addTodo: (value: string) => void
+}
+
+const muiStyles = (theme: Theme) =>
+  createStyles({
+    textField: {
+      marginLeft: theme.spacing.unit,
+      marginRight: theme.spacing.unit,
+      width: 200,
+    },
+    form: {
+      width: "100%",
+      marginTop: theme.spacing.unit,
+    },
+  })
+
+type Props = MainProps & WithStyles<typeof muiStyles>
+
+interface TodoValuesProps {
+  todo: string
+}
+
+const TodoInitValues: TodoValuesProps = {
+  todo: "",
 }
 
 const Fcomponent: React.FC<Props> = (props: Props) => {
-  const { addTodo } = props
+  const { classes, addTodo } = props
 
-  let input: HTMLInputElement | null
+  const TodoSchema = Yup.object().shape({
+    todo: Yup.string()
+      .max(100, "Too Long!")
+      .required("Requied!"),
+  })
+
+  const addTodoTextField = (props: TextFieldProps) => <MuiTextField {...fieldToTextField(props)} />
 
   return (
-    <div>
-      <form
-        onSubmit={e => {
-          e.preventDefault()
-          if (!input) {
-            return
-          }
+    <Formik
+      initialValues={TodoInitValues}
+      validationSchema={TodoSchema}
+      onSubmit={(values: TodoValuesProps, formikActions: FormikActions<TodoValuesProps>) => {
+        setTimeout(() => {
+          formikActions.setSubmitting(false)
 
-          addTodo(input.value)
-          input.value = ""
-        }}
-      >
-        <input
-          ref={node => {
-            input = node
-          }}
-        />
-        <button type="submit">Add Todo</button>
-      </form>
-    </div>
+          addTodo(values.todo)
+          formikActions.resetForm()
+        }, 500)
+      }}
+      render={({ submitForm, isSubmitting, values, setFieldValue }: FormikProps<TodoValuesProps>) => (
+        <Form>
+          <FormControl margin="normal" required={true} fullWidth={true}>
+            <Field name="todo" type="text" label="Todo" component={addTodoTextField} />
+          </FormControl>
+
+          {isSubmitting && <LinearProgress />}
+
+          <FormControl margin="normal" required={true} fullWidth={true}>
+            <Button variant="contained" color="primary" disabled={isSubmitting} onClick={submitForm}>
+              Submit
+            </Button>
+          </FormControl>
+        </Form>
+      )}
+    />
   )
 }
 
-export default Fcomponent
+export default withStyles(muiStyles)(Fcomponent)
