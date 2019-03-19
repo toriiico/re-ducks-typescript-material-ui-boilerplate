@@ -49,11 +49,16 @@ const FComponent: React.FC<Props> = (props: Props) => {
     <div className={classes.main}>
       <Paper className={classes.paper}>
         <Typography variant="h5" component="h2">
-          Todo App
+          Add Todo
         </Typography>
         <AddTodo addTodo={props.addTodo} />
-        <TodoList {...props} />
+      </Paper>
+      <Paper className={classes.paper}>
+        <Typography variant="h5" component="h2">
+          Todo List
+        </Typography>
         <FilterList {...props} />
+        <TodoList todos={props.todos} onTodoClick={props.onTodoClick} />
       </Paper>
     </div>
   )
