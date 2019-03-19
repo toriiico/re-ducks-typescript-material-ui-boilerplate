@@ -57,7 +57,7 @@ const FComponent: React.FC<Props> = (props: Props) => {
         <Typography variant="h5" component="h2">
           Todo List
         </Typography>
-        <FilterList {...props} />
+        <FilterList visibilityFilter={props.visibilityFilter} onFilterClick={props.onFilterClick} />
         <TodoList todos={props.todos} onTodoClick={props.onTodoClick} />
       </Paper>
     </div>
