@@ -1,16 +1,16 @@
 import * as React from "react"
 
-interface Props extends React.Props<{}> {
-  title: string
-}
+import { Typography } from "@material-ui/core"
+
+interface Props extends React.Props<{}> {}
 
 const FComponent: React.FC<Props> = (props: Props) => {
-  const { title } = props
-
   return (
     <React.Fragment>
-      <h2>Home</h2>
-      <div>Please click 'Todo App' link.</div>
+      <Typography variant="h5" component="h2">
+        Home
+      </Typography>
+      <Typography>Please click 'Todo App' link.</Typography>
     </React.Fragment>
   )
 }

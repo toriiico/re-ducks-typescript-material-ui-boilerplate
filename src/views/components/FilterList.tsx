@@ -1,33 +1,54 @@
 import React from "react"
 
-interface Props extends React.Props<{}> {
+import { Button, createStyles, Theme, WithStyles, withStyles } from "@material-ui/core"
+
+interface MainProps extends React.Props<{}> {
   visibilityFilter: string
   onFilterClick: (filter: string) => void
 }
 
+const muiStyles = (theme: Theme) =>
+  createStyles({
+    button: {
+      marginLeft: 10,
+    },
+    buttonGroup: {
+      marginTop: 10,
+      marginBottom: 10,
+    },
+  })
+
+type Props = MainProps & WithStyles<typeof muiStyles>
+
 const Fcomponent: React.FC<Props> = (props: Props) => {
-  const { visibilityFilter, onFilterClick } = props
+  const { visibilityFilter, onFilterClick, classes } = props
 
   const FilterLink = (filter: string, text: string) => {
     if (visibilityFilter === filter) {
-      return <button disabled={true}>{text}</button>
+      return (
+        <Button className={classes.button} disabled={true} color="secondary" variant="contained">
+          {text}
+        </Button>
+      )
     }
 
     return (
-      <button
+      <Button
+        className={classes.button}
+        color="secondary"
+        variant="contained"
         onClick={(e: any) => {
           e.preventDefault()
           onFilterClick(filter)
         }}
       >
         {text}
-      </button>
+      </Button>
     )
   }
 
   return (
-    <div>
-      <span>Show: </span>
+    <div className={classes.buttonGroup}>
       {FilterLink("SHOW_ALL", "All")}
       {FilterLink("SHOW_ACTIVE", "Active")}
       {FilterLink("SHOW_COMPLETED", "Completed")}
@@ -35,4 +56,4 @@ const Fcomponent: React.FC<Props> = (props: Props) => {
   )
 }
 
-export default Fcomponent
+export default withStyles(muiStyles)(Fcomponent)
