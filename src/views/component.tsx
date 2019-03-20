@@ -24,11 +24,17 @@ const muiStyles = createStyles({
 type Props = MainProps & WithStyles<typeof muiStyles>
 
 const FComponent: React.FC<Props> = (props: Props) => {
+  const { title } = props
+
+  React.useEffect(() => {
+    document.title = title
+  }, [title])
+
   return (
     <BrowserRouter>
       <React.Fragment>
         <CssBaseline />
-        <Header title={props.title} />
+        <Header title={title} />
         <main>
           <Route path="/" component={Routes} />
 
