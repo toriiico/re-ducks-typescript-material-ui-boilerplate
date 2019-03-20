@@ -1,10 +1,10 @@
-# Re-ducks Typescript Todos Example
+# Re-ducks Typescript with Material-UI (and Formik) Todos Example
 
-This project is a practical sample that replaces [Redux todo app example](https://github.com/reduxjs/redux/tree/master/examples/todos) with typescript and Re-ducks pattern, and adds router, typesafe-actions, etc.
+This project is built on the [toriiico/re-ducks-typescript-boilerplate](https://github.com/toriiico/re-ducks-typescript-boilerplate) basis.
 
-The structure of the state etc. is referring to [this awesome Re-ducks project](https://github.com/jthegedus/re-ducks-examples/tree/master/re-ducks-todos).
+If you do not like typescript or material-ui, please use [toriiico/re-ducks-typescript-boilerplate](https://github.com/toriiico/re-ducks-typescript-boilerplate).
 
-It is created based on [Create React App](https://github.com/facebook/create-react-app).
+![Todos Page](/misc/screenshots/todos_pate.png?raw=true "Todos Page")
 
 ## Develop Environment
 
@@ -13,13 +13,13 @@ It is created based on [Create React App](https://github.com/facebook/create-rea
 - node
   - v11.8.0
 - npm
-  - 6.8.0
+  - 6.5.0
 
 ## Start Todos App
 
 ```bash
-git clone https://github.com/toriiico/re-ducks-typescript-example.git
+git clone https://github.com/toriiico/re-ducks-typescript-material-ui-boilerplate.git
 
-cd re-ducks-typescript-example
+cd re-ducks-typescript-material-ui-boilerplate
 npm i && npm start
 ```
