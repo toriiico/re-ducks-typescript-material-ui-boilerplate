@@ -6,7 +6,9 @@ import AddTodo from "../../containers/todos/AddTodo"
 import FilterList from "../../containers/todos/FilterList"
 import TodoList from "../../containers/todos/TodoList"
 
-interface MainProps extends React.Props<{}> {}
+interface MainProps extends React.Props<{}> {
+  setPageName: (pageName: string) => void
+}
 
 const muiStyles = (theme: Theme) =>
   createStyles({
@@ -33,7 +35,12 @@ const muiStyles = (theme: Theme) =>
 type Props = MainProps & WithStyles<typeof muiStyles>
 
 const FComponent: React.FC<Props> = (props: Props) => {
-  const { classes } = props
+  const { setPageName, classes } = props
+  const pageName = "Todos"
+
+  React.useEffect(() => {
+    setPageName(pageName)
+  })
 
   return (
     <div className={classes.main}>

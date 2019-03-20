@@ -10,9 +10,11 @@ const mapStateToProps = (state: StateAll, ownProps: any) => {
 }
 
 const mapDispatchToProps = (dispatch: Dispatch<any>, ownProps: any) => {
-  dispatch(appOperations.setPageName("Home"))
-
-  return {}
+  return {
+    setPageName: (pageName: string) => {
+      return dispatch(appOperations.setPageName(pageName))
+    },
+  }
 }
 
 export default connect(
