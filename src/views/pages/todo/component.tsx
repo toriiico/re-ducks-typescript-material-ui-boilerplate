@@ -2,20 +2,12 @@ import * as React from "react"
 
 import { Button, createStyles, Paper, TextField, Theme, Typography, WithStyles, withStyles } from "@material-ui/core"
 
-import AddTodo from "../../components/AddTodo"
-import FilterList from "../../components/FilterList"
-import TodoList from "../../components/TodoList"
+import AddTodo from "../../containers/todos/AddTodo"
+import FilterList from "../../containers/todos/FilterList"
+import TodoList from "../../containers/todos/TodoList"
 
 interface MainProps extends React.Props<{}> {
-  // AddTodo
-  addTodo: (text: string) => void
-  // TodoList
-  todos: any
-  onTodoClick: (id: number) => void
-  // FilterList
-  active: boolean
-  visibilityFilter: string
-  onFilterClick: (filter: string) => void
+  setPageName: (pageName: string) => void
 }
 
 const muiStyles = (theme: Theme) =>
@@ -43,7 +35,12 @@ const muiStyles = (theme: Theme) =>
 type Props = MainProps & WithStyles<typeof muiStyles>
 
 const FComponent: React.FC<Props> = (props: Props) => {
-  const { classes } = props
+  const { setPageName, classes } = props
+  const pageName = "Todos"
+
+  React.useEffect(() => {
+    setPageName(pageName)
+  })
 
   return (
     <div className={classes.main}>
@@ -51,14 +48,14 @@ const FComponent: React.FC<Props> = (props: Props) => {
         <Typography variant="h5" component="h2">
           Add Todo
         </Typography>
-        <AddTodo addTodo={props.addTodo} />
+        <AddTodo />
       </Paper>
       <Paper className={classes.paper}>
         <Typography variant="h5" component="h2">
           Todo List
         </Typography>
-        <FilterList visibilityFilter={props.visibilityFilter} onFilterClick={props.onFilterClick} />
-        <TodoList todos={props.todos} onTodoClick={props.onTodoClick} />
+        <FilterList />
+        <TodoList />
       </Paper>
     </div>
   )
