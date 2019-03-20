@@ -2,7 +2,7 @@ import * as React from "react"
 
 import { createStyles, List, ListItem, ListItemText, Theme, WithStyles, withStyles } from "@material-ui/core"
 
-import { Todo } from "../../states/ducks/todos/models"
+import { Todo } from "../../../states/ducks/todos/models"
 import TodoComponent from "./Todo"
 
 interface MainProps extends React.Props<{}> {
