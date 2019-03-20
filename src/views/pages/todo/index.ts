@@ -1,6 +1,7 @@
 import { connect } from "react-redux"
 import { Dispatch } from "redux"
 
+import { appOperations } from "../../../states/ducks/app"
 import { todosOperations, todosSelectors } from "../../../states/ducks/todos"
 import { StateAll } from "../../../states/ducks/types"
 import component from "./component"
@@ -13,6 +14,8 @@ const mapStateToProps = (state: StateAll, ownProps: any) => {
 }
 
 const mapDispatchToProps = (dispatch: Dispatch<any>, ownProps: any) => {
+  dispatch(appOperations.setPageName("Todos"))
+
   return {
     onTodoClick: (id: string) => {
       dispatch(todosOperations.toggleTodo(id))
