@@ -7,7 +7,7 @@ const appInfoSelector: Selector<AppState, AppInfo> = (state: AppState): AppInfo 
 const getTitle = createSelector(
   appInfoSelector,
   (state: AppInfo, addPageName: boolean = true) => {
-    return addPageName ? state.title : `${state.pageName} | ${state.title}`
+    return addPageName ? `${state.pageName} | ${state.title}` : state.title
   }
 )
 
