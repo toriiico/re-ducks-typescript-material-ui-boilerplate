@@ -28,7 +28,7 @@ const FComponent: React.FC<Props> = (props: Props) => {
     <BrowserRouter>
       <React.Fragment>
         <CssBaseline />
-        <Header {...props} />
+        <Header title={props.title} />
         <main>
           <Route path="/" component={Routes} />
 
