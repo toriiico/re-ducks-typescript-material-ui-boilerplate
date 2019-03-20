@@ -1,18 +1,22 @@
 import { connect } from "react-redux"
 import { Dispatch } from "redux"
 
-import { appOperations } from "../../../states/ducks/app"
+import { todosOperations, todosSelectors } from "../../../states/ducks/todos"
 import { StateAll } from "../../../states/ducks/types"
-import component from "./component"
+import component from "../../components/FilterList"
 
 const mapStateToProps = (state: StateAll, ownProps: any) => {
-  return {}
+  return {
+    visibilityFilter: todosSelectors.getVisibilityFilter(state.todosState),
+  }
 }
 
 const mapDispatchToProps = (dispatch: Dispatch<any>, ownProps: any) => {
-  dispatch(appOperations.setPageName("Todos"))
-
-  return {}
+  return {
+    onFilterClick: (filter: string) => {
+      dispatch(todosOperations.setVisibilityFilter(filter))
+    },
+  }
 }
 
 export default connect(

@@ -1,18 +1,20 @@
 import { connect } from "react-redux"
 import { Dispatch } from "redux"
 
-import { appOperations } from "../../../states/ducks/app"
+import { todosOperations } from "../../../states/ducks/todos"
 import { StateAll } from "../../../states/ducks/types"
-import component from "./component"
+import component from "../../components/AddTodo"
 
 const mapStateToProps = (state: StateAll, ownProps: any) => {
   return {}
 }
 
 const mapDispatchToProps = (dispatch: Dispatch<any>, ownProps: any) => {
-  dispatch(appOperations.setPageName("Todos"))
-
-  return {}
+  return {
+    addTodo: (text: string) => {
+      dispatch(todosOperations.addTodo(text))
+    },
+  }
 }
 
 export default connect(

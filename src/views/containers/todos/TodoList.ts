@@ -1,18 +1,22 @@
 import { connect } from "react-redux"
 import { Dispatch } from "redux"
 
-import { appOperations } from "../../../states/ducks/app"
+import { todosOperations, todosSelectors } from "../../../states/ducks/todos"
 import { StateAll } from "../../../states/ducks/types"
-import component from "./component"
+import component from "../../components/TodoList"
 
 const mapStateToProps = (state: StateAll, ownProps: any) => {
-  return {}
+  return {
+    todos: todosSelectors.getVisibleTodos(state.todosState),
+  }
 }
 
 const mapDispatchToProps = (dispatch: Dispatch<any>, ownProps: any) => {
-  dispatch(appOperations.setPageName("Todos"))
-
-  return {}
+  return {
+    onTodoClick: (id: string) => {
+      dispatch(todosOperations.toggleTodo(id))
+    },
+  }
 }
 
 export default connect(
