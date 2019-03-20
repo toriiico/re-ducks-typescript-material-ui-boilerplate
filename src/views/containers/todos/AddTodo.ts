@@ -3,7 +3,7 @@ import { Dispatch } from "redux"
 
 import { todosOperations } from "../../../states/ducks/todos"
 import { StateAll } from "../../../states/ducks/types"
-import component from "../../components/AddTodo"
+import component from "../../components/todos/AddTodo"
 
 const mapStateToProps = (state: StateAll, ownProps: any) => {
   return {}
