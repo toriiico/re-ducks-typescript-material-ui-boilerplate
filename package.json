@@ -55,6 +55,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "start:builded": "npx serve -p 4001 ./build",
     "test:debug": "react-scripts --inspect-brk test --runInBand --no-cache",
     "eject": "react-scripts eject",
     "tslint:prettier-check": "tslint-config-prettier-check ./tslint.json",
