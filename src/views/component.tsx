@@ -1,6 +1,6 @@
 import * as React from "react"
 import { Route } from "react-router"
-import { BrowserRouter } from "react-router-dom"
+import { HashRouter as Router } from "react-router-dom"
 
 import { createStyles, CssBaseline, WithStyles, withStyles } from "@material-ui/core"
 
@@ -30,8 +30,9 @@ const FComponent: React.FC<Props> = (props: Props) => {
     document.title = title
   }, [title])
 
+  // NOTE: Router has no problem with replace to BrowserRouter.
   return (
-    <BrowserRouter>
+    <Router>
       <React.Fragment>
         <CssBaseline />
         <Header title={title} />
@@ -41,7 +42,7 @@ const FComponent: React.FC<Props> = (props: Props) => {
           {/* <Route component={NoMatch}/> */}
         </main>
       </React.Fragment>
-    </BrowserRouter>
+    </Router>
   )
 }
 

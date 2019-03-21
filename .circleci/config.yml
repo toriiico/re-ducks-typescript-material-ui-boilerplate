@@ -1,0 +1,69 @@
+version: 2.1
+
+executors:
+  main-executor:
+    working_directory: ~/repo
+    docker:
+      - image: circleci/node:11.8.0
+
+attach_workspace: &attach_workspace
+  attach_workspace:
+    at: ~/
+
+jobs:
+  prepare:
+    executor: main-executor
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-npm-deps-{{ checksum "package-lock.json" }}
+            - v1-npm-deps-
+      - run: npm i
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-npm-deps-{{ checksum "package-lock.json" }}
+      - persist_to_workspace:
+          root: ~/
+          paths:
+            - repo
+  build:
+    executor: main-executor
+    steps:
+      - *attach_workspace
+      - run: npm run build
+      - run:
+          command: |
+            sed -i -e 's/\/manifest.json/\/0\/artifacts-build\/manifest.json/g' ./build/index.html
+            sed -i -e 's/\/favicon.ico/\/0\/artifacts-build\/favicon.ico/g' ./build/index.html
+            sed -i -e 's/\/static\/js/\/0\/artifacts-build\/static\/js/g' ./build/index.html
+            sed -i -e 's/\/index.html/\/0\/artifacts-build\/index.html/g' ./build/service-worker.js
+            sed -i -e 's/\/static\/js/\/0\/artifacts-build\/static\/js/g' ./build/service-worker.js
+            find ./build/static/js -type f -name "*.js" -print0 | xargs -0 sed -i -e "s/\/service-worker.js/\/0\/artifacts-build\/service-worker.js/g"
+            find ./build/static/js -type f -name "*.js.map" -print0 | xargs -0 sed -i -e "s/\/service-worker.js/\/0\/artifacts-build\/service-worker.js/g"
+      - persist_to_workspace:
+          root: ~/repo
+          paths:
+            - build
+      - store_artifacts:
+          path: build
+          destination: artifacts-build
+
+  lint:
+    executor: main-executor
+    steps:
+      - *attach_workspace
+      - run: npm run lint
+
+workflows:
+  version: 2
+  build-and-test:
+    jobs:
+      - prepare
+      - lint:
+          requires:
+            - prepare
+      - build:
+          requires:
+            - prepare

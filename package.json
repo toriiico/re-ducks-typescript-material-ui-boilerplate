@@ -1,22 +1,21 @@
 {
-  "name": "re-ducks-typescript-example",
+  "name": "re-ducks-typescript-material-ui-boilerplate",
   "version": "0.1.0",
   "private": true,
   "engines": {
     "node": "11.8.0",
-    "npm": "6.8.0"
+    "npm": "6.5.0"
   },
   "author": {
     "name": "toriiico",
     "email": "pandeiro.hiitemasu@gmail.com"
   },
-  "homepage": "https://github.com/toriiico/re-ducks-typescript-example",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/toriiico/re-ducks-typescript-example.git"
+    "url": "git+https://github.com/toriiico/re-ducks-typescript-material-ui-boilerplate.git"
   },
   "bugs": {
-    "url": "https://github.com/toriiico/re-ducks-typescript-example/issues"
+    "url": "https://github.com/toriiico/re-ducks-typescript-material-ui-boilerplate/issues"
   },
   "dependencies": {
     "@types/jest": "24.0.6",
@@ -56,6 +55,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "start:builded": "npx serve -p 4001 ./build",
     "test:debug": "react-scripts --inspect-brk test --runInBand --no-cache",
     "eject": "react-scripts eject",
     "tslint:prettier-check": "tslint-config-prettier-check ./tslint.json",
