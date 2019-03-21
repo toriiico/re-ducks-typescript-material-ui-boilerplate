@@ -80,9 +80,9 @@ tslint applies automatic correction by adding [Extensions](https://marketplace.v
   /routers        -- Routing setting layer
 ```
 
-### それぞれの役割について
+### About each role
 
-#### states ディレクトリ
+#### states directory
 
 - /ducks
 
@@ -126,7 +126,7 @@ tslint applies automatic correction by adding [Extensions](https://marketplace.v
   - \[any.ts\]
     - It is possible to increase files as needed. (Such as apis.ts to manage api connections)
 
-#### views ディレクトリ
+#### views directory
 
 - ./index.ts
 - ./component.tsx
