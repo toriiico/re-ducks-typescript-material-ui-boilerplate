@@ -10,8 +10,6 @@ export interface TodosState {
 }
 
 export interface AddTodoAction {
-  payload: {
-    id: number
-    text: string
-  }
+  id: number
+  text: string
 }

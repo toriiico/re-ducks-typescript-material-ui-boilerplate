@@ -1,40 +1,49 @@
 import * as React from "react"
 import { Route } from "react-router"
-import { BrowserRouter, Link } from "react-router-dom"
+import { HashRouter as Router } from "react-router-dom"
 
+import { createStyles, CssBaseline, WithStyles, withStyles } from "@material-ui/core"
+
+import { Header } from "./components/common"
 import { Routes } from "./routers"
 
-interface Props extends React.Props<{}> {
+interface MainProps extends React.Props<{}> {
   title: string
 }
+
+const muiStyles = createStyles({
+  grow: {
+    flexGrow: 1,
+  },
+  menuButton: {
+    marginLeft: -12,
+    marginRight: 20,
+  },
+})
+
+type Props = MainProps & WithStyles<typeof muiStyles>
 
 const FComponent: React.FC<Props> = (props: Props) => {
   const { title } = props
 
-  const LinkList: React.FC = () => (
-    <ul>
-      <li>
-        <Link to="/">Home</Link>
-      </li>
-      <li>
-        <Link to="/todo">Todo App</Link>
-      </li>
-    </ul>
-  )
+  React.useEffect(() => {
+    document.title = title
+  }, [title])
 
+  // NOTE: Router has no problem with replace to BrowserRouter.
   return (
-    <BrowserRouter>
-      <div>
-        <header>{title}</header>
-        <LinkList />
+    <Router>
+      <React.Fragment>
+        <CssBaseline />
+        <Header title={title} />
         <main>
           <Route path="/" component={Routes} />
 
           {/* <Route component={NoMatch}/> */}
         </main>
-      </div>
-    </BrowserRouter>
+      </React.Fragment>
+    </Router>
   )
 }
 
-export default FComponent
+export default withStyles(muiStyles)(FComponent)

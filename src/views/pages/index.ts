@@ -1,18 +1,20 @@
 import { connect } from "react-redux"
 import { Dispatch } from "redux"
 
+import { appOperations } from "../../states/ducks/app"
 import { StateAll } from "../../states/ducks/types"
 import component from "./component"
 
 const mapStateToProps = (state: StateAll, ownProps: any) => {
-  return {
-    // TODO: add 'app' ducks state and get title
-    title: "Header Title",
-  }
+  return {}
 }
 
 const mapDispatchToProps = (dispatch: Dispatch<any>, ownProps: any) => {
-  return {}
+  return {
+    setPageName: (pageName: string) => {
+      return dispatch(appOperations.setPageName(pageName))
+    },
+  }
 }
 
 export default connect(

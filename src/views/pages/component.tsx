@@ -1,16 +1,25 @@
 import * as React from "react"
 
+import { Typography } from "@material-ui/core"
+
 interface Props extends React.Props<{}> {
-  title: string
+  setPageName: (pageName: string) => void
 }
 
 const FComponent: React.FC<Props> = (props: Props) => {
-  const { title } = props
+  const { setPageName } = props
+  const pageName = "Home"
+
+  React.useEffect(() => {
+    setPageName(pageName)
+  })
 
   return (
     <React.Fragment>
-      <h2>Home</h2>
-      <div>Please click 'Todo App' link.</div>
+      <Typography variant="h5" component="h2">
+        {pageName}
+      </Typography>
+      <Typography>Please select "Todo App" from the top left menu icon.</Typography>
     </React.Fragment>
   )
 }

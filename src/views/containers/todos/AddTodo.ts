@@ -1,18 +1,20 @@
 import { connect } from "react-redux"
 import { Dispatch } from "redux"
 
-import { appSelectors } from "../states/ducks/app"
-import { StateAll } from "../states/ducks/types"
-import component from "./component"
+import { todosOperations } from "../../../states/ducks/todos"
+import { StateAll } from "../../../states/ducks/types"
+import component from "../../components/todos/AddTodo"
 
 const mapStateToProps = (state: StateAll, ownProps: any) => {
-  return {
-    title: appSelectors.getTitle(state.appState),
-  }
+  return {}
 }
 
 const mapDispatchToProps = (dispatch: Dispatch<any>, ownProps: any) => {
-  return {}
+  return {
+    addTodo: (text: string) => {
+      dispatch(todosOperations.addTodo(text))
+    },
+  }
 }
 
 export default connect(
