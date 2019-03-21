@@ -4,7 +4,7 @@ This project is built on the [toriiico/re-ducks-typescript-boilerplate](https://
 
 If you do not like typescript or material-ui, please use [toriiico/re-ducks-typescript-boilerplate](https://github.com/toriiico/re-ducks-typescript-boilerplate).
 
-![Todos Page](/misc/screenshots/todos_pate.png?raw=true "Todos Page")
+![Todos Page](https://user-images.githubusercontent.com/43000286/54735181-ddaad600-4be7-11e9-8351-1565d66a6d2b.png)
 
 ## Develop Environment
 
