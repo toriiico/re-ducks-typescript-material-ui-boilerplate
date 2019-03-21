@@ -1,5 +1,3 @@
-### Create-React-App
-
 [![CircleCI](https://circleci.com/gh/toriiico/re-ducks-typescript-material-ui-boilerplate/tree/master.svg?style=svg&circle-token=06dbf3564058a70e10cc00314540cc13f44ecfdd)](https://circleci.com/gh/toriiico/re-ducks-typescript-material-ui-boilerplate/tree/master)
 
 # Re-ducks Typescript with Material-UI (and Formik) boilerplate
@@ -26,7 +24,7 @@ React で手軽に Material デザインを適用できる UI フレームワー
 ### _Formik & Yup_
 
 Formik は React の Form の扱いが楽になるライブラリです。  
-また Formik による Form のバリデーションを Yup ライブラリに任せています。
+また Formik による Form のバリデーションを Yup ライブラリに任せています。  
 これにより、手軽にバリデーション機能が実装できます。
 
 ### _Create-React-App_
@@ -90,15 +88,13 @@ Prettier と tslint でフォーマットとコーディングルールを強制
   - ステートを定義するための層です。  
     ステートの全体像としては下記のようになっており、ステートのルートと ducks 以下のフォルダは基本的に同期しています。
 
-  ```md
+  ```txt
   (ducks/app)
-
   - appState
     - appInfo
       - title
 
   (ducks/todos)
-
   - todosState
     - todos[]
       - todo
@@ -111,7 +107,7 @@ Prettier と tslint でフォーマットとコーディングルールを強制
 - ducks/\[other\]
   - index.ts
   - selectors.ts
-    - \[other\]が責務を持つステートから値を取得するためのヘルパー関数群です。  
+    - ducks/\[other\] が責務を持つステートから値を取得するためのヘルパー関数群です。  
       外部から呼び出すことが可能です。
   - operations.ts
     - 受け取ったデータを加工して action を dispatch するためのヘルパー関数群です。  
@@ -120,12 +116,12 @@ Prettier と tslint でフォーマットとコーディングルールを強制
     - 各処理用の型定義を行うためのファイルです。  
       外部から参照することが可能です。
   - actions.ts
-    - typesafe-actions を使用して純粋な action が定義される場所です。  
-      基本的に action の定義を行う場所として扱い、ここでデータを加工する処理は原則行いません。
+    - typesafe-actions を使用して純粋な action を定義する場所です。  
+      基本的に action の定義のみ行う場所として扱い、データを加工する処理は原則行いません。
   - reducers.ts
     - react redux で使用する一般的な reducer です。
   - constants.ts
-    - \[other\]内で使用する定数を扱う場所です。
+    - ducks/\[other\] 内で使用する定数を扱う場所です。
   - \[any.ts\]
     - 必要に応じてファイルを増やすことが可能です。（api 接続を管理するための apis.ts など）
 
