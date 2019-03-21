@@ -41,8 +41,9 @@ action まわりを型安全にするためのライブラリです。
 
 ### _reselect_
 
-Re-ducks の Selector で使用される、state の更新監視と state <=> view の役割の切り離しに一役買っているライブラリです。  
-メモ化とキャッシュ管理をより強化したい場合は、[re-reselect](https://github.com/toomuchdesign/re-reselect) の導入を検討することが可能です。
+state の更新監視と state <=> view の役割の切り離しに一役買っているライブラリです。  
+Re-ducks の selector で使用されています。  
+メモ化とキャッシュ管理をより強化したい場合は、[re-reselect](https://github.com/toomuchdesign/re-reselect) の導入を検討することも可能です。
 
 ### _Prettier & tslint_
 
@@ -89,13 +90,15 @@ Prettier と tslint でフォーマットとコーディングルールを強制
   - ステートを定義するための層です。  
     ステートの全体像としては下記のようになっており、ステートのルートと ducks 以下のフォルダは基本的に同期しています。
 
-  ```
+  ```md
   (ducks/app)
+
   - appState
     - appInfo
       - title
 
   (ducks/todos)
+
   - todosState
     - todos[]
       - todo
@@ -104,6 +107,27 @@ Prettier と tslint でフォーマットとコーディングルールを強制
         - completed
     - visibilityFilter
   ```
+
+- ducks/\[other\]
+  - index.ts
+  - selectors.ts
+    - \[other\]が責務を持つステートから値を取得するためのヘルパー関数群です。  
+      外部から呼び出すことが可能です。
+  - operations.ts
+    - 受け取ったデータを加工して action を dispatch するためのヘルパー関数群です。  
+      外部から呼び出すことが可能です。
+  - models.ts
+    - 各処理用の型定義を行うためのファイルです。  
+      外部から参照することが可能です。
+  - actions.ts
+    - typesafe-actions を使用して純粋な action が定義される場所です。  
+      基本的に action の定義を行う場所として扱い、ここでデータを加工する処理は原則行いません。
+  - reducers.ts
+    - react redux で使用する一般的な reducer です。
+  - constants.ts
+    - \[other\]内で使用する定数を扱う場所です。
+  - \[any.ts\]
+    - 必要に応じてファイルを増やすことが可能です。（api 接続を管理するための apis.ts など）
 
 #### views ディレクトリ
 
