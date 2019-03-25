@@ -17,7 +17,7 @@ It is a design pattern used in this project.
 
 ### _Typescript_
 
-### \_Material-UI framework
+### _Material-UI framework_
 
 It is a UI framework that can easily apply Material design with React.
 
