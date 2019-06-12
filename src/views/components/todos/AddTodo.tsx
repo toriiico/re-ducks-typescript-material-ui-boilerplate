@@ -22,13 +22,13 @@ interface MainProps extends React.Props<{}> {
 const muiStyles = (theme: Theme) =>
   createStyles({
     textField: {
-      marginLeft: theme.spacing.unit,
-      marginRight: theme.spacing.unit,
+      marginLeft: theme.spacing(),
+      marginRight: theme.spacing(),
       width: 200,
     },
     form: {
       width: "100%",
-      marginTop: theme.spacing.unit,
+      marginTop: theme.spacing(),
     },
   })
 
