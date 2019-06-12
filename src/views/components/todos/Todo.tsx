@@ -1,6 +1,7 @@
 import * as React from "react"
 
-import { createStyles, ListItem, ListItemText, Theme, WithStyles, withStyles } from "@material-ui/core"
+import ListItem from "@material-ui/core/ListItem"
+import ListItemText from "@material-ui/core/ListItemText"
 
 interface MainProps extends React.Props<{}> {
   onClick: Function
@@ -8,11 +9,7 @@ interface MainProps extends React.Props<{}> {
   text: string
 }
 
-const muiStyles = (theme: Theme) => createStyles({})
-
-type Props = MainProps & WithStyles<typeof muiStyles>
-
-const FComponent: React.FC<Props> = (props: Props) => {
+const FComponent: React.FC<MainProps> = (props: MainProps) => {
   const { onClick, completed, text } = props
 
   return (
@@ -28,4 +25,4 @@ const FComponent: React.FC<Props> = (props: Props) => {
   )
 }
 
-export default withStyles(muiStyles)(FComponent)
+export default FComponent

@@ -2,7 +2,7 @@ import * as React from "react"
 import { Route } from "react-router"
 import { HashRouter as Router } from "react-router-dom"
 
-import { createStyles, CssBaseline, WithStyles, withStyles } from "@material-ui/core"
+import CssBaseline from "@material-ui/core/CssBaseline"
 
 import { Header } from "./components/common"
 import { Routes } from "./routers"
@@ -11,19 +11,7 @@ interface MainProps extends React.Props<{}> {
   title: string
 }
 
-const muiStyles = createStyles({
-  grow: {
-    flexGrow: 1,
-  },
-  menuButton: {
-    marginLeft: -12,
-    marginRight: 20,
-  },
-})
-
-type Props = MainProps & WithStyles<typeof muiStyles>
-
-const FComponent: React.FC<Props> = (props: Props) => {
+const FComponent: React.FC<MainProps> = (props: MainProps) => {
   const { title } = props
 
   React.useEffect(() => {
@@ -46,4 +34,4 @@ const FComponent: React.FC<Props> = (props: Props) => {
   )
 }
 
-export default withStyles(muiStyles)(FComponent)
+export default FComponent

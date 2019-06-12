@@ -1,27 +1,26 @@
 import React from "react"
 
-import { Button, createStyles, Theme, WithStyles, withStyles } from "@material-ui/core"
+import Button from "@material-ui/core/Button"
+import makeStyles from "@material-ui/core/styles/makeStyles"
 
 interface MainProps extends React.Props<{}> {
   visibilityFilter: string
   onFilterClick: (filter: string) => void
 }
 
-const muiStyles = (theme: Theme) =>
-  createStyles({
-    button: {
-      marginLeft: 10,
-    },
-    buttonGroup: {
-      marginTop: 10,
-      marginBottom: 10,
-    },
-  })
+const useStyles = makeStyles({
+  button: {
+    marginLeft: 10,
+  },
+  buttonGroup: {
+    marginTop: 10,
+    marginBottom: 10,
+  },
+})
 
-type Props = MainProps & WithStyles<typeof muiStyles>
-
-const Fcomponent: React.FC<Props> = (props: Props) => {
-  const { visibilityFilter, onFilterClick, classes } = props
+const Fcomponent: React.FC<MainProps> = (props: MainProps) => {
+  const { visibilityFilter, onFilterClick } = props
+  const classes = useStyles()
 
   const FilterLink = (filter: string, text: string) => {
     if (visibilityFilter === filter) {
@@ -56,4 +55,4 @@ const Fcomponent: React.FC<Props> = (props: Props) => {
   )
 }
 
-export default withStyles(muiStyles)(Fcomponent)
+export default Fcomponent

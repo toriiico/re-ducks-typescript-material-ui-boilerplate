@@ -1,6 +1,6 @@
 import * as React from "react"
 
-import { Typography } from "@material-ui/core"
+import Typography from "@material-ui/core/Typography"
 
 interface Props extends React.Props<{}> {
   setPageName: (pageName: string) => void
