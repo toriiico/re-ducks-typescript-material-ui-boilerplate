@@ -1,6 +1,8 @@
 import * as React from "react"
 
-import { Button, createStyles, Paper, TextField, Theme, Typography, WithStyles, withStyles } from "@material-ui/core"
+import { Button, Paper, TextField, Theme, Typography } from "@material-ui/core"
+import makeStyles from "@material-ui/core/styles/makeStyles"
+import useTheme from "@material-ui/core/styles/useTheme"
 
 import AddTodo from "../../containers/todos/AddTodo"
 import FilterList from "../../containers/todos/FilterList"
@@ -10,8 +12,10 @@ interface MainProps extends React.Props<{}> {
   setPageName: (pageName: string) => void
 }
 
-const muiStyles = (theme: Theme) =>
-  createStyles({
+const useStyles = () => {
+  const theme: Theme = useTheme()
+
+  return makeStyles({
     main: {
       width: "auto",
       display: "block", // Fix IE 11 issue.
@@ -30,12 +34,12 @@ const muiStyles = (theme: Theme) =>
       alignItems: "center",
       padding: `${theme.spacing(2)}px ${theme.spacing(3)}px ${theme.spacing(3)}px`,
     },
-  })
+  })()
+}
 
-type Props = MainProps & WithStyles<typeof muiStyles>
-
-const FComponent: React.FC<Props> = (props: Props) => {
-  const { setPageName, classes } = props
+const FComponent: React.FC<MainProps> = (props: MainProps) => {
+  const { setPageName } = props
+  const classes = useStyles()
   const pageName = "Todos"
 
   React.useEffect(() => {
@@ -61,4 +65,4 @@ const FComponent: React.FC<Props> = (props: Props) => {
   )
 }
 
-export default withStyles(muiStyles)(FComponent)
+export default FComponent

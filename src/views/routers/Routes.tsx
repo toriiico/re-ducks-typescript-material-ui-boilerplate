@@ -6,9 +6,7 @@ import Todo from "../pages/todo"
 
 interface MainProps extends React.Props<{}> {}
 
-type Props = MainProps
-
-const FComponent: React.FC<Props> = (props: Props) => {
+const FComponent: React.FC<MainProps> = (props: MainProps) => {
   return (
     <Switch>
       {/* Home */}

@@ -3,7 +3,6 @@ import { Link } from "react-router-dom"
 
 import {
   AppBar,
-  createStyles,
   CssBaseline,
   Drawer,
   IconButton,
@@ -12,15 +11,14 @@ import {
   ListItemText,
   Toolbar,
   Typography,
-  withStyles,
-  WithStyles,
 } from "@material-ui/core"
+import makeStyles from "@material-ui/core/styles/makeStyles"
 
 interface MainProps extends React.Props<{}> {
   title: string
 }
 
-const muiStyles = createStyles({
+const useStyles = makeStyles({
   grow: {
     flexGrow: 1,
   },
@@ -37,10 +35,9 @@ const muiStyles = createStyles({
   },
 })
 
-type Props = MainProps & WithStyles<typeof muiStyles>
-
-const FComponent: React.FC<Props> = (props: Props) => {
-  const { title, classes } = props
+const FComponent: React.FC<MainProps> = (props: MainProps) => {
+  const { title } = props
+  const classes = useStyles()
 
   const [isOpenMenu, setOpenMenu] = React.useState(false)
 
@@ -85,4 +82,4 @@ const FComponent: React.FC<Props> = (props: Props) => {
   )
 }
 
-export default withStyles(muiStyles)(FComponent)
+export default FComponent
