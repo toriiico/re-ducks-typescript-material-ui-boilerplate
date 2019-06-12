@@ -2,7 +2,7 @@ import * as React from "react"
 import { Route } from "react-router"
 import { HashRouter as Router } from "react-router-dom"
 
-import { CssBaseline } from "@material-ui/core"
+import CssBaseline from "@material-ui/core/CssBaseline"
 
 import { Header } from "./components/common"
 import { Routes } from "./routers"

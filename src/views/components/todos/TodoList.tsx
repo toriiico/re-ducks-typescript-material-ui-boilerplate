@@ -1,6 +1,6 @@
 import * as React from "react"
 
-import { List, ListItem, ListItemText } from "@material-ui/core"
+import List from "@material-ui/core/List"
 import makeStyles from "@material-ui/core/styles/makeStyles"
 
 import { Todo } from "../../../states/ducks/todos/models"

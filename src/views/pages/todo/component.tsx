@@ -1,8 +1,10 @@
 import * as React from "react"
 
-import { Button, Paper, TextField, Theme, Typography } from "@material-ui/core"
+import Paper from "@material-ui/core/Paper"
+import { Theme } from "@material-ui/core/styles/createMuiTheme"
 import makeStyles from "@material-ui/core/styles/makeStyles"
 import useTheme from "@material-ui/core/styles/useTheme"
+import Typography from "@material-ui/core/Typography"
 
 import AddTodo from "../../containers/todos/AddTodo"
 import FilterList from "../../containers/todos/FilterList"

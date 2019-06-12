@@ -1,6 +1,9 @@
 import * as React from "react"
 
-import { Button, FormControl, LinearProgress, TextField as MuiTextField } from "@material-ui/core"
+import Button from "@material-ui/core/Button"
+import FormControl from "@material-ui/core/FormControl"
+import LinearProgress from "@material-ui/core/LinearProgress"
+import MuiTextField from "@material-ui/core/TextField"
 
 import { Field, Form, Formik, FormikActions, FormikProps } from "formik"
 import { fieldToTextField, TextFieldProps } from "formik-material-ui"
